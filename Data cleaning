@@ -1,3 +1,8 @@
 # find min/max/mean by group with all other columns kept
 DT <- as.data.table(dataframe)
 DT[ , .SD[min==min(Employees)], by = c('State','city')] #.SD: subset
+
+#
+#Find min/max/mean for several variables by group
+newdataframe <- aggregate(cbind(col1, col2) ~ gene_id, dataframe, sum)
+
