@@ -6,3 +6,6 @@ DT[ , .SD[min==min(Employees)], by = c('State','city')] #.SD: subset
 #Find min/max/mean for several variables by group
 newdataframe <- aggregate(cbind(col1, col2) ~ gene_id, dataframe, sum)
 
+# Select a series of variables in cols
+cols = paste("V", c(1,2,3,5), sep="")
+newdt <- olddt[, cols, with=FALSE]
