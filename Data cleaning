@@ -10,8 +10,11 @@ newdataframe <- aggregate(cbind(col1, col2) ~ gene_id, dataframe, sum)
 cols = paste("V", c(1,2,3,5), sep="")
 newdt <- olddt[, cols, with=FALSE]
 
-# Select a list of columns
+# Select a list of columns ---1
 newdt <- subset(olddt, select=names(olddt) %in% names(otherdt))
+# Select a list of columns ---2
+colnamelist <- otherdt$var
+newdt <- olddt[, colnamelist,with=F]
 
 #set level of factor according to the order presented in the dataset
 tmp$factor <- factor(tmp$Outcome, levels = unique(tmp$Outcome))
