@@ -3,12 +3,15 @@ DT <- as.data.table(dataframe)
 DT[ , .SD[min==min(Employees)], by = c('State','city')] #.SD: subset
 
 #
-#Find min/max/mean for several variables by group
+#Find min/max/mean/sum for several variables by group
 newdataframe <- aggregate(cbind(col1, col2) ~ gene_id, dataframe, sum)
 
 # Select a series of variables in cols
 cols = paste("V", c(1,2,3,5), sep="")
 newdt <- olddt[, cols, with=FALSE]
+
+# Select a list of columns
+newdt <- subset(olddt, select=names(olddt) %in% names(otherdt))
 
 #set level of factor according to the order presented in the dataset
 tmp$factor <- factor(tmp$Outcome, levels = unique(tmp$Outcome))
